@@ -551,6 +551,7 @@
 "no-internet-connection" = "String used in various places to indicate no internet connection";
 "no-internet-connection-article-reload" = "Subtitle for letting users know article cannot be reloaded without internet connection.";
 "no-internet-connection-article-reload-button" = "Title for button to return to last saved version of article.";
+"notifications-center-agent-description-from-format" = "Text indicating who triggered a notification in notifications center. $1 will be replaced with the origin agent of the notification, which could be a username.";
 "notifications-center-applied-filters-accessibility-label" = "Accessibility label for Notifications Center's filters button. This button is in a selected state indicating that filters are applied.";
 "notifications-center-applied-project-filters-accessibility-label" = "Accessibility label for Notifications Center's project filters button. This button is in a selected state indicating that project filters are applied.";
 "notifications-center-badge-button-accessibility-label" = "Accessibility label for a button that navigates to Notifications Center. This button has a badge indicating there are unread notifications.";
@@ -608,7 +609,6 @@
 "notifications-center-subheader-edit-milestone" = "Subheader text for edit milestone notifications in Notifications Center.";
 "notifications-center-subheader-edit-reverted" = "Subheader text for edit reverted notifications in Notifications Center.";
 "notifications-center-subheader-email-from-other-user" = "Subheader text for 'email from other user' notifications in Notifications Center.";
-"notifications-center-subheader-from-agent" = "Subheader text for notifications in Notifications Center. $1 will be replaced with the origin agent of the notification.";
 "notifications-center-subheader-login-fail-known-device" = "Subheader text for 'Failed login from a known device' notifications in Notifications Center.";
 "notifications-center-subheader-login-fail-unknown-device" = "Subheader text for 'Failed login from an unknown device' notifications in Notifications Center.";
 "notifications-center-subheader-login-success-unknown-device" = "Subheader text for 'Successful login from an unknown device' notifications in Notifications Center.";
@@ -712,6 +712,8 @@
 "potd-widget-title" = "Text for title of Picture of the day widget.";
 "preference-summary-eventlogging-opt-in" = "Description of preference that when checked enables data collection of user behavior.";
 "preference-title-eventlogging-opt-in" = "Title of preference that when checked enables data collection of user behavior.";
+"project-description-from-format" = "Format for constructing a project description. $1 is replaced with the name of the notifications project, Eg. \"From English Wikipedia\" or \"From Wikidata\"";
+"project-description-on-format" = "Format for constructing the project description label on a notification detail screen. $1 is replaced with the name of the notifications project, Eg. \"On English Wikipedia\" or \"On Wikidata\"";
 "rank-accessibility-label" = "Accessibility label read aloud to sight impared users to indicate a ranking - Number 1, Number 2, etc. $1 is replaced with the ranking {{Identical|Number}}";
 "readers-accessibility-label" = "Accessibility label read aloud to sight impared users to indicate number of readers for a given article - $1 is replaced with the number of readers {{Identical|Reader}}";
 "reading-list-add-generic-hint-title" = "Title of the reading list hint that appears after an article is saved.";

@@ -46,6 +46,8 @@ public class CommonStrings: NSObject {
     @objc public static let exploreTabTitle = WMFLocalizedString("home-title", value: "Explore", comment: "Title for home interface. {{Identical|Explore}}")
     @objc public static let savedTabTitle = WMFLocalizedString("saved-title", value: "Saved", comment: "Title of the saved screen shown on the saved tab {{Identical|Saved}}")
 
+    //Notifications
+    
     @objc public static let notificationsCenterTitle = WMFLocalizedString("notifications-center-title", value: "Notifications", comment: "Title for Notifications Center interface, as well as the accessibility label for the button that navigates to Notifications Center.")
     @objc public static let notificationsCenterBadgeTitle = WMFLocalizedString("notifications-center-badge-button-accessibility-label", value: "Notifications with unread badge", comment: "Accessibility label for a button that navigates to Notifications Center. This button has a badge indicating there are unread notifications.")
     public static let notificationsCenterGoToTitleFormat = WMFLocalizedString("notifications-center-go-to-title", value: "Go to %1$@", comment: "Button text in Notifications Center that routes to a particular page. %1$@ is replaced with page title.")
@@ -54,6 +56,10 @@ public class CommonStrings: NSObject {
     public static let notificationsCenterAllNotificationsStatus = WMFLocalizedString("notifications-center-status-all", value: "All", comment: "Text to indicate all notifications in Notifications Center.")
     public static let notificationsCenterReadNotificationsStatus = WMFLocalizedString("notifications-center-status-read", value: "Read", comment: "Text to indicate a read notification in Notifications Center.")
     public static let notificationsCenterUnreadNotificationsStatus = WMFLocalizedString("notifications-center-status-unread", value: "Unread", comment: "Text to indicate an unread notification in Notifications Center.")
+    public static let notificationsCenterAgentDescriptionFromFormat = WMFLocalizedString("notifications-center-agent-description-from-format", value: "From %1$@", comment: "Text indicating who triggered a notification in notifications center. %1$@ will be replaced with the origin agent of the notification, which could be a username.")
+    
+    public static let projectDescriptionOnFormat = WMFLocalizedString("project-description-on-format", value: "On %1$@", comment: "Format for constructing the project description label on a notification detail screen. %1$@ is replaced with the name of the notifications project, Eg. \"On English Wikipedia\" or \"On Wikidata\"")
+    public static let projectDescriptionFromFormat = WMFLocalizedString("project-description-from-format", value: "From %1$@", comment: "Format for constructing a project description. %1$@ is replaced with the name of the notifications project, Eg. \"From English Wikipedia\" or \"From Wikidata\"")
 
     @objc public static let exploreFeedTitle = WMFLocalizedString("welcome-exploration-explore-feed-title", value:"Explore feed", comment:"Title for Explore feed")
     @objc public static let featuredArticleTitle = WMFLocalizedString("explore-featured-article-heading", value: "Featured article", comment: "Text for 'Featured article' header")

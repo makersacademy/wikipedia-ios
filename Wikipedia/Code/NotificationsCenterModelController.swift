@@ -1,6 +1,7 @@
 
 import Foundation
 import WMF
+import SwiftUI
 
 //Keeps track of the RemoteNotification managed objects and NotificationsCenterCellViewModels that power Notification Center in a performant way
 final class NotificationsCenterModelController {
@@ -12,12 +13,14 @@ final class NotificationsCenterModelController {
     
     private let languageLinkController: MWKLanguageLinkController
     private let remoteNotificationsController: RemoteNotificationsController
+    private let configuration: Configuration
     
     private(set) var oldestDisplayedNotificationDate: Date?
     
-    init(languageLinkController: MWKLanguageLinkController, remoteNotificationsController: RemoteNotificationsController) {
+    init(languageLinkController: MWKLanguageLinkController, remoteNotificationsController: RemoteNotificationsController, configuration: Configuration) {
         self.languageLinkController = languageLinkController
         self.remoteNotificationsController = remoteNotificationsController
+        self.configuration = configuration
     }
     
     @discardableResult func addNewCellViewModelsWith(notifications: [RemoteNotification], isEditing: Bool) -> NotificationsCenterUpdateType? {
@@ -28,7 +31,7 @@ final class NotificationsCenterModelController {
             //Instantiate new view model and insert it into tracking properties
             
             guard let key = notification.key,
-                  let newCellViewModel = NotificationsCenterCellViewModel(notification: notification, languageLinkController: languageLinkController, isEditing: isEditing) else {
+                  let newCellViewModel = NotificationsCenterCellViewModel(notification: notification, languageLinkController: languageLinkController, isEditing: isEditing, configuration: configuration) else {
                 continue
             }
             
