@@ -10,6 +10,7 @@ enum NotificationsCenterAction {
 struct NotificationsCenterActionData {
     let text: String
     let url: URL?
+    let iconType: NotificationsCenterIconType?
 }
 
 //MARK: Private Helpers - Individual Swipe Action methods
@@ -25,7 +26,7 @@ extension NotificationsCenterCommonViewModel {
         let format = WMFLocalizedString("notifications-center-go-to-user-page", value: "Go to %1$@'s user page", comment: "Button text in Notifications Center that routes to a web view of the user page of the sender that triggered the notification. %1$@ is replaced with the sender's username.")
         let text = String.localizedStringWithFormat(format, agentName)
 
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.person)
 
         return NotificationsCenterAction.custom(data)
     }
@@ -37,7 +38,7 @@ extension NotificationsCenterCommonViewModel {
         }
 
         let text = WMFLocalizedString("notifications-center-go-to-diff", value: "Go to diff", comment: "Button text in Notifications Center that routes to a diff screen of the revision that triggered the notification.")
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.diff)
         return NotificationsCenterAction.custom(data)
     }
 
@@ -52,8 +53,8 @@ extension NotificationsCenterCommonViewModel {
         }
 
         let text = yourPhrasing ? WMFLocalizedString("notifications-center-go-to-your-talk-page", value: "Go to your talk page", comment: "Button text in Notifications Center that routes to user's talk page.") : WMFLocalizedString("notifications-center-go-to-talk-page", value: "Go to talk page", comment: "Button text in Notifications Center that routes to a talk page.")
-
-        let data = NotificationsCenterActionData(text: text, url: url)
+        
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
         return NotificationsCenterAction.custom(data)
     }
 
@@ -70,7 +71,7 @@ extension NotificationsCenterCommonViewModel {
             prefix = namespace != .main ? "\(namespace.canonicalName):" : ""
         }
         let text = String.localizedStringWithFormat(CommonStrings.notificationsCenterGoToTitleFormat, "\(prefix)\(title)")
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
         return NotificationsCenterAction.custom(data)
     }
 
@@ -82,7 +83,7 @@ extension NotificationsCenterCommonViewModel {
         }
 
         let text = String.localizedStringWithFormat(CommonStrings.notificationsCenterGoToTitleFormat, title)
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
         return NotificationsCenterAction.custom(data)
     }
 
@@ -93,7 +94,7 @@ extension NotificationsCenterCommonViewModel {
         }
 
         let text = WMFLocalizedString("notifications-center-go-to-wikidata-item", value: "Go to Wikidata item", comment: "Button text in Notifications Center that routes to a Wikidata item page.")
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.wikidata)
         return NotificationsCenterAction.custom(data)
     }
 
@@ -106,7 +107,7 @@ extension NotificationsCenterCommonViewModel {
         }
 
         let text = String.localizedStringWithFormat(CommonStrings.notificationsCenterGoToTitleFormat, "\(title)#\(type)")
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
         return NotificationsCenterAction.custom(data)
     }
 
@@ -118,7 +119,7 @@ extension NotificationsCenterCommonViewModel {
         }
 
         let text = String.localizedStringWithFormat(CommonStrings.notificationsCenterGoToTitleFormat, title)
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
         return NotificationsCenterAction.custom(data)
     }
     
@@ -130,7 +131,7 @@ extension NotificationsCenterCommonViewModel {
         }
 
         let text = String.localizedStringWithFormat(CommonStrings.notificationsCenterGoToTitleFormat, title)
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
         return NotificationsCenterAction.custom(data)
     }
 
@@ -142,7 +143,7 @@ extension NotificationsCenterCommonViewModel {
 
         let text = WMFLocalizedString("notifications-center-login-notifications", value: "Login Notifications", comment: "Button text in Notifications Center that routes user to login notifications help page in web view.")
 
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
         return NotificationsCenterAction.custom(data)
     }
 
@@ -155,7 +156,7 @@ extension NotificationsCenterCommonViewModel {
 
         let text = WMFLocalizedString("notifications-center-change-password", value: "Change Password", comment: "Button text in Notifications Center that routes user to change password screen.")
 
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.lock)
         return NotificationsCenterAction.custom(data)
     }
 
@@ -165,7 +166,7 @@ extension NotificationsCenterCommonViewModel {
             return nil
         }
 
-        let data = NotificationsCenterActionData(text: text, url: url)
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.link)
         return NotificationsCenterAction.custom(data)
     }
 }

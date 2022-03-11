@@ -843,6 +843,10 @@
 		67FA403E27DA84C500BE1601 /* NotificationsCenterDetailViewModel+ActionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FA403C27DA84C500BE1601 /* NotificationsCenterDetailViewModel+ActionExtensions.swift */; };
 		67FA403F27DA84C500BE1601 /* NotificationsCenterDetailViewModel+ActionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FA403C27DA84C500BE1601 /* NotificationsCenterDetailViewModel+ActionExtensions.swift */; };
 		67FA404027DA84C500BE1601 /* NotificationsCenterDetailViewModel+ActionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FA403C27DA84C500BE1601 /* NotificationsCenterDetailViewModel+ActionExtensions.swift */; };
+		67FA404227DBF1C900BE1601 /* NotificationsCenterIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FA404127DBF1C900BE1601 /* NotificationsCenterIconType.swift */; };
+		67FA404327DBF1C900BE1601 /* NotificationsCenterIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FA404127DBF1C900BE1601 /* NotificationsCenterIconType.swift */; };
+		67FA404427DBF1C900BE1601 /* NotificationsCenterIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FA404127DBF1C900BE1601 /* NotificationsCenterIconType.swift */; };
+		67FA404527DBF1C900BE1601 /* NotificationsCenterIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FA404127DBF1C900BE1601 /* NotificationsCenterIconType.swift */; };
 		7004A5BA268CEE680029C46B /* MetricsClientBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7004A5B9268CEE680029C46B /* MetricsClientBridge.swift */; };
 		702096B9256C3D5700E27041 /* SamplingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702096B8256C3D5700E27041 /* SamplingController.swift */; };
 		70B798142575714100C10BCA /* EventPlatformEvents.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70B798122575714100C10BCA /* EventPlatformEvents.xcdatamodeld */; };
@@ -4048,6 +4052,7 @@
 		67F73E782267B9500079DEEF /* TalkPageTopicNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkPageTopicNewViewController.swift; sourceTree = "<group>"; };
 		67FA403A27DA832600BE1601 /* NotificationsCenterDetailViewModel+TextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationsCenterDetailViewModel+TextExtensions.swift"; sourceTree = "<group>"; };
 		67FA403C27DA84C500BE1601 /* NotificationsCenterDetailViewModel+ActionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationsCenterDetailViewModel+ActionExtensions.swift"; sourceTree = "<group>"; };
+		67FA404127DBF1C900BE1601 /* NotificationsCenterIconType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCenterIconType.swift; sourceTree = "<group>"; };
 		67FF8E2C2550BB6F0048E741 /* ArticleAsLivingDocFunnel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleAsLivingDocFunnel.swift; sourceTree = "<group>"; };
 		7004A5B9268CEE680029C46B /* MetricsClientBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsClientBridge.swift; sourceTree = "<group>"; };
 		702096B8256C3D5700E27041 /* SamplingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplingController.swift; sourceTree = "<group>"; };
@@ -5921,6 +5926,7 @@
 				6761AEE02704DE4100E47BAD /* NotificationsCenterCellViewModel+TextExtensions.swift */,
 				6761AEE52704FD3F00E47BAD /* NotificationsCenterCellViewModel+IconNameExtensions.swift */,
 				678D29B2272AF1DA0036C5D9 /* NotificationsCenterCellViewModel+SheetActionExtensions.swift */,
+				67FA404127DBF1C900BE1601 /* NotificationsCenterIconType.swift */,
 				00E2EA8826E28A9700B1A741 /* NotificationsCenterCellStyle.swift */,
 				00E2EA8D26E2A45C00B1A741 /* NotificationsCenterCellDisplayState.swift */,
 				6761AEF62707E34F00E47BAD /* NotificationsCenterModelController.swift */,
@@ -11378,6 +11384,7 @@
 				BC23E4E21C223FAE00B5AFDE /* WMFArticleRevision.m in Sources */,
 				B01E3AFF21F98BFF0015B715 /* EditPreviewViewController.swift in Sources */,
 				D818D38B1ED765470076110D /* ArticleLocationCollectionViewController.swift in Sources */,
+				67FA404227DBF1C900BE1601 /* NotificationsCenterIconType.swift in Sources */,
 				D8A6BAEF1E4C9C0700A981C8 /* ArticlePlaceView.swift in Sources */,
 				7A196F5A21BF199500D9E4B5 /* SectionEditorWebView.swift in Sources */,
 				83836ECC1F615E5B007D1A05 /* ShareViewController.swift in Sources */,
@@ -12026,6 +12033,7 @@
 				7A4B333F2136EDED00C6C820 /* UnderlineButton.swift in Sources */,
 				67DAEDA623CE24DA003AA208 /* SavedArticlesFetcher.swift in Sources */,
 				D8A42AB31E815A9C00D8E281 /* MWKSearchRedirectMapping.m in Sources */,
+				67FA404527DBF1C900BE1601 /* NotificationsCenterIconType.swift in Sources */,
 				D8A42AB41E815A9C00D8E281 /* MWKImageInfoFetcher+PicOfTheDayInfo.m in Sources */,
 				67E8B082226A57E500537BC9 /* TalkPageTopicCell.swift in Sources */,
 				D8A42AB61E815A9C00D8E281 /* RoundedCornerView.swift in Sources */,
@@ -12829,6 +12837,7 @@
 				83B01F9B23DB62CD001185F4 /* ArticleViewController+ArticleInformation.swift in Sources */,
 				D8A47C8623D7259A002AA823 /* NoIntrinsicContentSizeImageView.swift in Sources */,
 				D8CE25F61E698E2400DAE2E0 /* UIScrollView+WMFContentOffsetUtils.m in Sources */,
+				67FA404427DBF1C900BE1601 /* NotificationsCenterIconType.swift in Sources */,
 				83FBE9761F6181E00026C7EB /* ShareAFactActivityImageItemProvider.swift in Sources */,
 				0042813F25E6E841004945B3 /* NYTPhotosViewController.m in Sources */,
 				679471DC275F245000621071 /* NotificationsCenterInboxView.swift in Sources */,
@@ -13354,6 +13363,7 @@
 				83B01F9C23DB62CD001185F4 /* ArticleViewController+ArticleInformation.swift in Sources */,
 				D8A47C8723D7259A002AA823 /* NoIntrinsicContentSizeImageView.swift in Sources */,
 				D8EC3EF21E9BDA35006712EB /* NSAttributedString+WMFModify.m in Sources */,
+				67FA404327DBF1C900BE1601 /* NotificationsCenterIconType.swift in Sources */,
 				D8EC3EF31E9BDA35006712EB /* WMFSettingsViewController.m in Sources */,
 				0042813E25E6E841004945B3 /* NYTPhotosViewController.m in Sources */,
 				679471DE275F245900621071 /* NotificationsCenterInboxView.swift in Sources */,

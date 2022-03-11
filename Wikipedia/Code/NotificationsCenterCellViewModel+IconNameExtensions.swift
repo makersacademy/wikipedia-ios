@@ -2,31 +2,23 @@
 import Foundation
 
 extension NotificationsCenterCellViewModel {
-    
-    typealias IconName = String
-    
-    //Use if you need to make the system (SFSymbols) vs custom distinction
-    enum IconType {
-        case custom(IconName)
-        case system(IconName)
-    }
         
-    var projectIconName: IconName? {
+    var projectIconName: NotificationsCenterIconName? {
         return project.projectIconName
     }
         
-    var footerIconType: IconType? {
+    var footerIconType: NotificationsCenterIconType? {
         switch notification.type {
         case .loginFailKnownDevice,
              .loginFailUnknownDevice,
              .loginSuccessUnknownDevice:
-            return .system("lock")
+            return NotificationsCenterIconType.lock
         case .unknownSystemAlert,
              .unknownSystemNotice,
              .unknownAlert,
              .unknownNotice,
              .unknown:
-            return .system("link")
+            return NotificationsCenterIconType.link
         default:
             break
         }
@@ -40,15 +32,11 @@ extension NotificationsCenterCellViewModel {
         case .talk,
              .userTalk,
              .user:
-            //TODO: Should we include the other talk types?
-            return .system("person.circle.fill")
+            return NotificationsCenterIconType.personFill
         case .main:
-            if #available(iOS 14, *) {
-                return .system("doc.plaintext.fill")
-            }
-            return .system("doc.text.fill")
+            return NotificationsCenterIconType.documentFill
         case .file:
-            return .system("photo")
+            return NotificationsCenterIconType.photo
         default:
             return nil
         }

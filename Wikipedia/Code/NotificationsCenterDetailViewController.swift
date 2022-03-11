@@ -75,14 +75,6 @@ class NotificationsCenterDetailViewController: ViewController {
         return label
     }()
     
-    lazy var primaryActionButton: UIButton? = {
-        if let primaryAction = viewModel.primaryAction {
-            return buttonForAction(prefix: "primary", action: primaryAction)
-        }
-        
-        return nil
-    }()
-    
     init(viewModel: NotificationsCenterDetailViewModel) {
         self.viewModel = viewModel
         super.init()
@@ -116,24 +108,40 @@ class NotificationsCenterDetailViewController: ViewController {
         stackView.addArrangedSubview(contentTitleLabel)
         stackView.addArrangedSubview(contentBodyLabel)
         
-        if let primaryActionButton = primaryActionButton {
-            stackView.addArrangedSubview(primaryActionButton)
+        if let primaryAction = viewModel.primaryAction {
+            let horizontalStackView = stackViewForAction(prefix: "primary", action: primaryAction)
+            stackView.addArrangedSubview(horizontalStackView)
         }
         
         for action in viewModel.secondaryActions {
-            if let button = buttonForAction(prefix: "secondary", action: action) {
-                stackView.addArrangedSubview(button)
-            }
-            
+            let secondaryStackView = stackViewForAction(prefix: "secondary", action: action)
+            stackView.addArrangedSubview(secondaryStackView)
         }
         
         updateScrollViewInsets()
     }
 
-    private func buttonForAction(prefix: String, action: NotificationsCenterAction) -> UIButton? {
+    private func stackViewForAction(prefix: String, action: NotificationsCenterAction) -> UIStackView {
+        
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
         
         switch action {
         case .custom(let notificationsCenterActionData):
+            
+            if let icon = notificationsCenterActionData.iconType {
+                let image: UIImage?
+                switch icon {
+                case .system(let systemName):
+                    image = UIImage(systemName: systemName)
+                case .custom(let customName):
+                    image = UIImage(named: customName)
+                }
+                
+                let imageView = UIImageView(image: image)
+                stackView.addArrangedSubview(imageView)
+            }
             
             if #available(iOS 14.0, *) {
                 let button = UIButton(
@@ -144,7 +152,7 @@ class NotificationsCenterDetailViewController: ViewController {
                 button.setTitle("\(prefix) - \(notificationsCenterActionData.text)", for: .normal)
                 button.titleLabel?.numberOfLines = 0
                 
-                return button
+                stackView.addArrangedSubview(button)
             } else {
                 // Fallback on earlier versions
             }
@@ -153,8 +161,9 @@ class NotificationsCenterDetailViewController: ViewController {
             break
         }
         
-        return nil
+        return stackView
     }
+    
     override func apply(theme: Theme) {
         super.apply(theme: theme)
         guard viewIfLoaded != nil else {
