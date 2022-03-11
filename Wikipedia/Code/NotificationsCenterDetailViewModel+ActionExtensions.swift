@@ -21,7 +21,7 @@ extension NotificationsCenterDetailViewModel {
              .failedMention,
              .pageReviewed,
              .editMilestone:
-            if let titleAction = commonViewModel.titleNotificationsCenterAction {
+            if let titleAction = commonViewModel.titleSimplifiedAction {
                 return titleAction
             }
         case .userRightsChange:
@@ -37,7 +37,7 @@ extension NotificationsCenterDetailViewModel {
                 return wikidataItemAction
             }
         case .emailFromOtherUser:
-            if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
+            if let agentUserPageAction = commonViewModel.agentUserPageSimplifiedAction {
                 return agentUserPageAction
             }
         case .thanks:
@@ -131,7 +131,7 @@ private extension NotificationsCenterDetailViewModel {
     var userTalkPageActions: [NotificationsCenterAction] {
         var actions: [NotificationsCenterAction] = []
 
-        if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
+        if let agentUserPageAction = commonViewModel.agentUserPageSimplifiedAction {
             actions.append(agentUserPageAction)
         }
 
@@ -145,11 +145,11 @@ private extension NotificationsCenterDetailViewModel {
     var mentionInTalkAndEditRevertedPageActions: [NotificationsCenterAction] {
         var actions: [NotificationsCenterAction] = []
 
-        if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
+        if let agentUserPageAction = commonViewModel.agentUserPageSimplifiedAction {
             actions.append(agentUserPageAction)
         }
 
-        if let titleAction = commonViewModel.titleNotificationsCenterAction {
+        if let titleAction = commonViewModel.titleSimplifiedAction {
             actions.append(titleAction)
         }
 
@@ -159,11 +159,11 @@ private extension NotificationsCenterDetailViewModel {
     var mentionInEditSummaryActions: [NotificationsCenterAction] {
         var actions: [NotificationsCenterAction] = []
 
-        if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
+        if let agentUserPageAction = commonViewModel.agentUserPageSimplifiedAction {
             actions.append(agentUserPageAction)
         }
 
-        if let titleAction = commonViewModel.titleNotificationsCenterAction {
+        if let titleAction = commonViewModel.titleSimplifiedAction {
             actions.append(titleAction)
         }
 
@@ -181,7 +181,7 @@ private extension NotificationsCenterDetailViewModel {
             actions.append(specificUserGroupRightsAction)
         }
 
-        if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
+        if let agentUserPageAction = commonViewModel.agentUserPageSimplifiedAction {
             actions.append(agentUserPageAction)
         }
 
@@ -191,7 +191,7 @@ private extension NotificationsCenterDetailViewModel {
     var pageReviewedActions: [NotificationsCenterAction] {
         var actions: [NotificationsCenterAction] = []
 
-        if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
+        if let agentUserPageAction = commonViewModel.agentUserPageSimplifiedAction {
             actions.append(agentUserPageAction)
         }
 
@@ -201,12 +201,12 @@ private extension NotificationsCenterDetailViewModel {
     var pageLinkActions: [NotificationsCenterAction] {
         var actions: [NotificationsCenterAction] = []
 
-        if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
+        if let agentUserPageAction = commonViewModel.agentUserPageSimplifiedAction {
             actions.append(agentUserPageAction)
         }
         
         //Article you edited
-        if let titleAction = commonViewModel.titleNotificationsCenterAction {
+        if let titleAction = commonViewModel.titleSimplifiedAction {
             actions.append(titleAction)
         }
 
@@ -220,11 +220,11 @@ private extension NotificationsCenterDetailViewModel {
     var connectionWithWikidataActions: [NotificationsCenterAction] {
         var actions: [NotificationsCenterAction] = []
 
-        if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
+        if let agentUserPageAction = commonViewModel.agentUserPageSimplifiedAction {
             actions.append(agentUserPageAction)
         }
 
-        if let titleAction = commonViewModel.titleNotificationsCenterAction {
+        if let titleAction = commonViewModel.titleSimplifiedAction {
             actions.append(titleAction)
         }
 
@@ -238,11 +238,11 @@ private extension NotificationsCenterDetailViewModel {
     var thanksActions: [NotificationsCenterAction] {
         var actions: [NotificationsCenterAction] = []
 
-        if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
+        if let agentUserPageAction = commonViewModel.agentUserPageSimplifiedAction {
             actions.append(agentUserPageAction)
         }
 
-        if let titleAction = commonViewModel.titleNotificationsCenterAction {
+        if let titleAction = commonViewModel.titleSimplifiedAction {
             actions.append(titleAction)
         }
 
@@ -252,7 +252,7 @@ private extension NotificationsCenterDetailViewModel {
     var loginActions: [NotificationsCenterAction] {
         var actions: [NotificationsCenterAction] = []
 
-        if let loginHelpAction = commonViewModel.loginNotificationsNotificationsCenterAction {
+        if let loginHelpAction = commonViewModel.loginNotificationsGoToAction {
             actions.append(loginHelpAction)
         }
 
@@ -277,7 +277,7 @@ private extension NotificationsCenterDetailViewModel {
     var genericActions: [NotificationsCenterAction] {
         var actions: [NotificationsCenterAction] = []
 
-        if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
+        if let agentUserPageAction = commonViewModel.agentUserPageSimplifiedAction {
             actions.append(agentUserPageAction)
         }
 

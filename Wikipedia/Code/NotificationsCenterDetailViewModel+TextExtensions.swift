@@ -7,6 +7,17 @@ extension NotificationsCenterDetailViewModel {
     }
     
     var headerTitle: String? {
+        
+        //Login types seem to have an exception where they display "Alert" here.
+        switch commonViewModel.notification.type {
+        case .loginFailKnownDevice,
+             .loginFailUnknownDevice,
+             .loginSuccessUnknownDevice:
+            return CommonStrings.notificationsCenterAlert
+        default:
+            break
+        }
+        
         if let agentName = commonViewModel.notification.agentName {
             return String.localizedStringWithFormat(CommonStrings.notificationsCenterAgentDescriptionFromFormat, agentName)
         }

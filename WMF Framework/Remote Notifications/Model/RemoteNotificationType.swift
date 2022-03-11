@@ -223,7 +223,7 @@ public extension RemoteNotificationType {
         case .unknownSystemAlert,
                 .unknownAlert,
                 .unknown:
-            return WMFLocalizedString("notifications-center-type-item-description-alert", value: "Alert", comment: "Description of \"alert\" notification types, used on the notification detail view.")
+            return CommonStrings.notificationsCenterAlert
         case .unknownSystemNotice,
                 .unknownNotice:
             return WMFLocalizedString("notifications-center-type-item-description-notice", value: "Notice", comment: "Description of \"notice\" notification types, used on the notification detail view.")

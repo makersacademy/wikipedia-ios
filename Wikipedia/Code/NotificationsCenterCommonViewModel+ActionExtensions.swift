@@ -30,6 +30,19 @@ extension NotificationsCenterCommonViewModel {
 
         return NotificationsCenterAction.custom(data)
     }
+    
+    //Go to user page
+    var agentUserPageSimplifiedAction: NotificationsCenterAction? {
+        guard let url = customPrefixAgentNameURL(pageNamespace: .user) else {
+            return nil
+        }
+
+        let text = WMFLocalizedString("notifications-center-go-to-user-page-simplified", value: "Go to user page", comment: "Button text in Notifications Center that routes to a web view of the user page of the sender that triggered the notification.")
+
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.person)
+
+        return NotificationsCenterAction.custom(data)
+    }
 
     //Go to diff
     var diffNotificationsCenterAction: NotificationsCenterAction? {
@@ -43,6 +56,12 @@ extension NotificationsCenterCommonViewModel {
     }
 
     //Go to [your?] talk page
+    
+    var goToTalkPageText: String {
+        WMFLocalizedString("notifications-center-go-to-talk-page", value: "Go to talk page", comment: "Button text in Notifications Center that routes to a talk page.")
+    }
+    
+    //TODO: try harder to preserve fragment here
     func titleTalkPageNotificationsCenterAction(yourPhrasing: Bool = false) -> NotificationsCenterAction? {
         
         guard let linkData = linkData,
@@ -52,7 +71,7 @@ extension NotificationsCenterCommonViewModel {
             return nil
         }
 
-        let text = yourPhrasing ? WMFLocalizedString("notifications-center-go-to-your-talk-page", value: "Go to your talk page", comment: "Button text in Notifications Center that routes to user's talk page.") : WMFLocalizedString("notifications-center-go-to-talk-page", value: "Go to talk page", comment: "Button text in Notifications Center that routes to a talk page.")
+        let text = yourPhrasing ? WMFLocalizedString("notifications-center-go-to-your-talk-page", value: "Go to your talk page", comment: "Button text in Notifications Center that routes to user's talk page.") : goToTalkPageText
         
         let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
         return NotificationsCenterAction.custom(data)
@@ -71,6 +90,34 @@ extension NotificationsCenterCommonViewModel {
             prefix = namespace != .main ? "\(namespace.canonicalName):" : ""
         }
         let text = String.localizedStringWithFormat(CommonStrings.notificationsCenterGoToTitleFormat, "\(prefix)\(title)")
+        let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
+        return NotificationsCenterAction.custom(data)
+    }
+    
+    //Go to article OR
+    //Go to talk page
+    //Fallback to titleNotificationsCenterAction if necessary
+    var titleSimplifiedAction: NotificationsCenterAction? {
+        guard let linkData = linkData,
+              let url = fullTitleURL else {
+            return nil
+        }
+        
+        let text: String
+        if let namespace = linkData.titleNamespace {
+            switch namespace {
+            case .main:
+                text = WMFLocalizedString("notifications-center-go-to-article", value: "Go to article", comment: "Button text in Notifications Center that routes to an article.")
+            case .talk,
+                .userTalk:
+                text = goToTalkPageText
+            default:
+                return titleNotificationsCenterAction
+            }
+        } else {
+            return titleNotificationsCenterAction
+        }
+        
         let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
         return NotificationsCenterAction.custom(data)
     }
@@ -136,13 +183,25 @@ extension NotificationsCenterCommonViewModel {
     }
 
     //Login Notifications
+    var loginNotificationsText: String {
+        WMFLocalizedString("notifications-center-login-notifications", value: "Login Notifications", comment: "Button text in Notifications Center that routes user to login notifications help page in web view.")
+    }
     var loginNotificationsNotificationsCenterAction: NotificationsCenterAction? {
         guard let url = loginNotificationsHelpURL else {
             return nil
         }
 
-        let text = WMFLocalizedString("notifications-center-login-notifications", value: "Login Notifications", comment: "Button text in Notifications Center that routes user to login notifications help page in web view.")
+        let data = NotificationsCenterActionData(text: loginNotificationsText, url: url, iconType: NotificationsCenterIconType.document)
+        return NotificationsCenterAction.custom(data)
+    }
+    
+    //Go to Login Notifications
+    var loginNotificationsGoToAction: NotificationsCenterAction? {
+        guard let url = loginNotificationsHelpURL else {
+            return nil
+        }
 
+        let text = String.localizedStringWithFormat(CommonStrings.notificationsCenterGoToTitleFormat, loginNotificationsText)
         let data = NotificationsCenterActionData(text: text, url: url, iconType: NotificationsCenterIconType.document)
         return NotificationsCenterAction.custom(data)
     }
