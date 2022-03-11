@@ -502,19 +502,26 @@ extension NotificationsCenterViewController: UICollectionViewDelegate {
         if !viewModel.isEditing {
             
             collectionView.deselectItem(at: indexPath, animated: true)
-
-            if let primaryURL = cellViewModel.commonViewModel.primaryURL {
-                navigate(to: primaryURL)
-                if !cellViewModel.isRead {
-                    viewModel.markAsReadOrUnread(viewModels: [cellViewModel], shouldMarkRead: true)
-                }
+            
+            navigateToDetailView(cellViewModel: cellViewModel)
+            
+            if !cellViewModel.isRead {
+                viewModel.markAsReadOrUnread(viewModels: [cellViewModel], shouldMarkRead: true)
             }
+            
         } else {
             viewModel.updateCellDisplayStates(cellViewModels: [cellViewModel], isSelected: true)
             let selectedCellViewModels = self.selectedCellViewModels
             updateMarkButtonOptionsMenu(selectedCellViewModels: selectedCellViewModels)
             updateMarkButtonsEnabledStates(numSelectedCells: selectedCellViewModels.count)
         }
+    }
+    
+    func navigateToDetailView(cellViewModel: NotificationsCenterCellViewModel) {
+        //navigate(to: primaryURL)
+        let detailViewModel = NotificationsCenterDetailViewModel(commonViewModel: cellViewModel.commonViewModel)
+        let detailVC = NotificationsCenterDetailViewController(viewModel: detailViewModel)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

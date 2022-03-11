@@ -149,10 +149,6 @@ private extension NotificationsCenterDetailViewModel {
             actions.append(agentUserPageAction)
         }
 
-        if let diffAction = commonViewModel.diffNotificationsCenterAction {
-            actions.append(diffAction)
-        }
-
         if let titleAction = commonViewModel.titleNotificationsCenterAction {
             actions.append(titleAction)
         }
@@ -165,10 +161,6 @@ private extension NotificationsCenterDetailViewModel {
 
         if let agentUserPageAction = commonViewModel.agentUserPageNotificationsCenterAction {
             actions.append(agentUserPageAction)
-        }
-
-        if let diffAction = commonViewModel.diffNotificationsCenterAction {
-            actions.append(diffAction)
         }
 
         if let titleAction = commonViewModel.titleNotificationsCenterAction {
