@@ -22,7 +22,7 @@ public struct ArticleAsLivingDocViewModel {
         self.articleInsertHtmlSnippets = articleInsertHtmlSnippets
         self.lastUpdatedTimestamp = lastUpdatedTimestamp
     }
-
+    
     public init?(significantEvents: SignificantEvents, traitCollection: UITraitCollection, theme: Theme) {
         guard let dayMonthNumberYearDateFormatter = DateFormatter.wmf_monthNameDayOfMonthNumberYear() else {
             assertionFailure("Unable to generate date formatters for Significant Events View Models")
@@ -52,6 +52,7 @@ public struct ArticleAsLivingDocViewModel {
         // loop through typed events, turn into view models and segment off into sections
         var currentSectionEvents: [TypedEvent] = []
         var sections: [SectionHeader] = []
+//        print("SectionHeader", sections)
         
         var maybeCurrentTimestamp: Date?
         var maybePreviousTimestamp: Date?
