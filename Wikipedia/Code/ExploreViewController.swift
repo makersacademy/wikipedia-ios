@@ -14,6 +14,7 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         layoutManager.register(ExploreCardCollectionViewCell.self, forCellWithReuseIdentifier: ExploreCardCollectionViewCell.identifier, addPlaceholder: true)
 
         navigationItem.titleView = titleView
@@ -47,6 +48,7 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("View Did appear")
         super.viewDidAppear(animated)
         startMonitoringReachabilityIfNeeded()
         showOfflineEmptyViewIfNeeded()
