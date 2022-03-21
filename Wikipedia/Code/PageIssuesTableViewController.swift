@@ -14,7 +14,9 @@ class PageIssuesTableViewController: UITableViewController {
         
         self.tableView.estimatedRowHeight = 90.0
         self.tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine // changed from .none to .singleLine
+        self.tableView.separatorColor = UIColor.red //added this line to change color of seperator
+        
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: PageIssuesTableViewController.defaultViewCellReuseIdentifier)
 
@@ -42,6 +44,7 @@ class PageIssuesTableViewController: UITableViewController {
         cell.selectedBackgroundView = UIView()
         cell.selectedBackgroundView?.backgroundColor = self.theme.colors.midBackground
         cell.textLabel?.textColor = self.theme.colors.primaryText
+        cell.imageView?.image = UIImage(named:"description-info") // implemented 'description-info image
         
         return cell
     }

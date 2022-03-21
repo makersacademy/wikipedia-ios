@@ -157,7 +157,7 @@ class ViewController: ThemeableViewController, NavigationBarHiderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         scrollView?.automaticallyAdjustsScrollIndicatorInsets = false
         scrollView?.contentInsetAdjustmentBehavior = .never
  
