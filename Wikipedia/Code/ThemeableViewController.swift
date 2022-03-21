@@ -7,9 +7,9 @@ class ThemeableViewController: UIViewController, Themeable {
         let currentHour = Calendar.current.component(.hour, from: Date())
         
         if currentHour >= 6 && currentHour <= 17 {
-            apply(theme: Theme.dark)
-        } else {
             apply(theme: Theme.light)
+        } else {
+            apply(theme: Theme.dark)
         }
     }
     
