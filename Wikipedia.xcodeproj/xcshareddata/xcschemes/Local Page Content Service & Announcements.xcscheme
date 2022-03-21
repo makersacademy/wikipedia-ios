@@ -53,6 +53,15 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "ArticleCacheReadingManualTests">
+               </Test>
+               <Test
+                  Identifier = "ArticleManualPerformanceTests">
+               </Test>
+               <Test
+                  Identifier = "ArticleViewControllerTests">
+               </Test>
+               <Test
                   Identifier = "LegacyCoreDataMigratorTests">
                </Test>
                <Test

@@ -6,12 +6,54 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
 
     public var presentedContentGroupKey: String?
     public var shouldRestoreScrollPosition = false
+    var startingTheme = "black"
+    // get the current date and time
+    let currentDateTime = Date()
 
+    // get the user's calendar
+    let userCalendar = Calendar.current
+
+    // choose which date and time components are needed
+    let requestedComponents: Set<Calendar.Component> = [
+        .year,
+        .month,
+        .day,
+        .hour,
+        .minute,
+        .second
+    ]
     @objc public weak var notificationsCenterPresentationDelegate: NotificationsCenterPresentationDelegate?
     @objc public weak var settingsPresentationDelegate: SettingsPresentationDelegate?
 
     // MARK - UIViewController
     
+    // in ExploreViewController, and called from viewDidLoad()
+   func setAutomaticTheme() {
+          // To discover:
+           // How to get current time?
+           // How to check if time is within a certain period? - Google
+               // Consider building an 'extension' - is there already one for Date in this repo?
+               // Extension file naming practices, ThingYou'reExtending+extension Date+extension
+           // Switch: to set the correct string value for the theme
+           
+           // ToDo: Have something else that determines the theme value so it's not hardcoded
+       let dateToSetTheme = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
+       
+       if let hour = dateToSetTheme.hour {
+        
+           if (hour >= 6 && hour < 17) {
+               startingTheme = "sepia"
+           }
+           else {
+               startingTheme = "dark"
+           }
+       }else {
+           return
+       }
+           let userInfo: [String: Any] = [ReadingThemesControlsViewController.WMFUserDidSelectThemeNotificationThemeNameKey: startingTheme]
+       
+           NotificationCenter.default.post(name: Notification.Name(ReadingThemesControlsViewController.WMFUserDidSelectThemeNotification), object: nil, userInfo: userInfo)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutManager.register(ExploreCardCollectionViewCell.self, forCellWithReuseIdentifier: ExploreCardCollectionViewCell.identifier, addPlaceholder: true)
@@ -22,12 +64,14 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
         navigationBar.displayType = .centeredLargeTitle
         navigationBar.shouldTransformUnderBarViewWithBar = true
         navigationBar.isShadowHidingEnabled = true
-
+        
         updateNotificationsCenterButton()
         updateSettingsButton()
 
         isRefreshControlEnabled = true
         collectionView.refreshControl?.layer.zPosition = 0
+        
+        setAutomaticTheme()
         
         title = CommonStrings.exploreTabTitle
 
