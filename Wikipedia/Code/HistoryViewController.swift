@@ -17,7 +17,6 @@ class HistoryViewController: ArticleFetchedResultsViewController {
         navigationBar.isShadowHidingEnabled = true
         navigationBar.displayType = .largeTitle
         
-
         emptyViewType = .noHistory
         
         title = CommonStrings.historyTabTitle
