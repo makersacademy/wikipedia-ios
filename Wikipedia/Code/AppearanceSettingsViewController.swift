@@ -79,7 +79,7 @@ final class AppearanceSettingsViewController: SubSettingsViewController {
         let subtitle =   WMFLocalizedString("theme-default-explanation", value:"Matches system theme", comment: "Explains that the default theme matches the iOS system theme setting")
         
         let defaultThemeItem = AppearanceSettingsCheckmarkItem(title: CommonStrings.defaultThemeDisplayName, subtitle: subtitle, theme: Theme.defaultThemeName, checkmarkAction: { [weak self] in
-            self?.userDidSelect(theme: theme.name)
+            self?.userDidSelect(theme: Theme.defaultThemeName)
         })
         
         let items = [defaultThemeItem, checkmarkItem(for: Theme.light), checkmarkItem(for: Theme.sepia), checkmarkItem(for: Theme.dark), checkmarkItem(for: Theme.black)]
