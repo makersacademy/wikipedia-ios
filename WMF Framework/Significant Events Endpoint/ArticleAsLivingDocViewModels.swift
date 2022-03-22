@@ -52,7 +52,6 @@ public struct ArticleAsLivingDocViewModel {
         // loop through typed events, turn into view models and segment off into sections
         var currentSectionEvents: [TypedEvent] = []
         var sections: [SectionHeader] = []
-//        print("SectionHeader", sections)
         
         var maybeCurrentTimestamp: Date?
         var maybePreviousTimestamp: Date?

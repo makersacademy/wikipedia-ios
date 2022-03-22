@@ -14,7 +14,8 @@ class PageIssuesTableViewController: UITableViewController {
         
         self.tableView.estimatedRowHeight = 90.0
         self.tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+        self.tableView.separatorColor = UIColor.blue50
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: PageIssuesTableViewController.defaultViewCellReuseIdentifier)
 
@@ -34,8 +35,14 @@ class PageIssuesTableViewController: UITableViewController {
 
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-        
-        cell.textLabel?.text = issues[indexPath.row]
+            
+        switch true {
+        case indexPath.row == 0 && indexPath.count != 1:
+            cell.textLabel?.text = String(issues[0].prefix(153))
+        default:
+            cell.textLabel?.text = issues[indexPath.row]
+            cell.imageView?.image = UIImage(named: "description-info")
+        }
         
         cell.isUserInteractionEnabled = false
         cell.backgroundColor = self.theme.colors.paperBackground

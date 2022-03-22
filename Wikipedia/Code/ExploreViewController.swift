@@ -17,29 +17,28 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
         NotificationCenter.default.post(name: Notification.Name(ReadingThemesControlsViewController.WMFUserDidSelectThemeNotification), object: nil, userInfo: userInfo)
     }
     
+    func determineThemBytime() {
+        let userTheme: String
+        
+        switch Date().isDayTime() {
+        case true: userTheme = "sepia"
+        case false: userTheme = "dark"
+        }
+        
+        let userInfo = [ReadingThemesControlsViewController.WMFUserDidSelectThemeNotificationThemeNameKey: userTheme]
+        NotificationCenter.default.post(name: Notification.Name(ReadingThemesControlsViewController.WMFUserDidSelectThemeNotification), object: nil, userInfo: userInfo)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutManager.register(ExploreCardCollectionViewCell.self, forCellWithReuseIdentifier: ExploreCardCollectionViewCell.identifier, addPlaceholder: true)
        
-        let now = Date()
-        let six_today = now.dateAt(hours: 6, minutes: 0)
-        let seventeen_today = now.dateAt(hours: 17, minutes: 00)
-
-        if now >= six_today &&
-          now <= seventeen_today
-        {
-            setAutomaticTheme(background: "light")
-        } else {
-            setAutomaticTheme(background: "dark")
-        }
-        
         navigationItem.titleView = titleView
         navigationBar.addUnderNavigationBarView(searchBarContainerView)
         navigationBar.isUnderBarViewHidingEnabled = true
         navigationBar.displayType = .centeredLargeTitle
         navigationBar.shouldTransformUnderBarViewWithBar = true
         navigationBar.isShadowHidingEnabled = true
-        print("viewDidLoad")
         updateNotificationsCenterButton()
         updateSettingsButton()
 
@@ -64,7 +63,6 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("Explore PAge: viewDidAppear is run")
         super.viewDidAppear(animated)
         startMonitoringReachabilityIfNeeded()
         showOfflineEmptyViewIfNeeded()
@@ -1089,26 +1087,35 @@ extension ExploreViewController {
 
 extension Date
 {
+    public func isDayTime() -> Bool {
+        let six_today = self.dateAt(hours: 6, minutes: 0)
+        let seventeen_today = self.dateAt(hours: 17, minutes: 0)
+        
+        if self >= six_today && self <= seventeen_today {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func dateAt(hours: Int, minutes: Int) -> Date
+    {
+        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
 
-  func dateAt(hours: Int, minutes: Int) -> Date
-  {
-    let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        //get the month/day/year componentsfor today's date.
 
-    //get the month/day/year componentsfor today's date.
+        var date_components = calendar.components(
+            [NSCalendar.Unit.year,
+             NSCalendar.Unit.month,
+             NSCalendar.Unit.day],
+            from: self)
 
+        //Create an NSDate for the specified time today.
+        date_components.hour = hours
+        date_components.minute = minutes
+        // date_components.second = 0
 
-    var date_components = calendar.components(
-      [NSCalendar.Unit.year,
-       NSCalendar.Unit.month,
-       NSCalendar.Unit.day],
-      from: self)
-
-    //Create an NSDate for the specified time today.
-    date_components.hour = hours
-    date_components.minute = minutes
-    date_components.second = 0
-
-    let newDate = calendar.date(from: date_components)!
-    return newDate
-  }
+        let newDate = calendar.date(from: date_components)!
+        return newDate
+    }
 }
