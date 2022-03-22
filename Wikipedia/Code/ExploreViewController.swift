@@ -12,17 +12,33 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
 
     // MARK - UIViewController
     
+    func setAutomaticTheme(background: String) {
+        let userInfo: [String: Any] = [ReadingThemesControlsViewController.WMFUserDidSelectThemeNotificationThemeNameKey: background]
+        NotificationCenter.default.post(name: Notification.Name(ReadingThemesControlsViewController.WMFUserDidSelectThemeNotification), object: nil, userInfo: userInfo)
+    }
+    
+    func determineThemBytime() {
+        let userTheme: String
+        
+        switch Date().isDayTime() {
+        case true: userTheme = "sepia"
+        case false: userTheme = "dark"
+        }
+        
+        let userInfo = [ReadingThemesControlsViewController.WMFUserDidSelectThemeNotificationThemeNameKey: userTheme]
+        NotificationCenter.default.post(name: Notification.Name(ReadingThemesControlsViewController.WMFUserDidSelectThemeNotification), object: nil, userInfo: userInfo)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutManager.register(ExploreCardCollectionViewCell.self, forCellWithReuseIdentifier: ExploreCardCollectionViewCell.identifier, addPlaceholder: true)
-
+       
         navigationItem.titleView = titleView
         navigationBar.addUnderNavigationBarView(searchBarContainerView)
         navigationBar.isUnderBarViewHidingEnabled = true
         navigationBar.displayType = .centeredLargeTitle
         navigationBar.shouldTransformUnderBarViewWithBar = true
         navigationBar.isShadowHidingEnabled = true
-
         updateNotificationsCenterButton()
         updateSettingsButton()
 
@@ -1067,4 +1083,39 @@ extension ExploreViewController {
         notificationsCenterPresentationDelegate?.userDidTapNotificationsCenter(from: self)
     }
 
+}
+
+extension Date
+{
+    public func isDayTime() -> Bool {
+        let six_today = self.dateAt(hours: 6, minutes: 0)
+        let seventeen_today = self.dateAt(hours: 17, minutes: 0)
+        
+        if self >= six_today && self <= seventeen_today {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func dateAt(hours: Int, minutes: Int) -> Date
+    {
+        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+
+        //get the month/day/year componentsfor today's date.
+
+        var date_components = calendar.components(
+            [NSCalendar.Unit.year,
+             NSCalendar.Unit.month,
+             NSCalendar.Unit.day],
+            from: self)
+
+        //Create an NSDate for the specified time today.
+        date_components.hour = hours
+        date_components.minute = minutes
+        // date_components.second = 0
+
+        let newDate = calendar.date(from: date_components)!
+        return newDate
+    }
 }

@@ -22,7 +22,7 @@ public struct ArticleAsLivingDocViewModel {
         self.articleInsertHtmlSnippets = articleInsertHtmlSnippets
         self.lastUpdatedTimestamp = lastUpdatedTimestamp
     }
-
+    
     public init?(significantEvents: SignificantEvents, traitCollection: UITraitCollection, theme: Theme) {
         guard let dayMonthNumberYearDateFormatter = DateFormatter.wmf_monthNameDayOfMonthNumberYear() else {
             assertionFailure("Unable to generate date formatters for Significant Events View Models")
