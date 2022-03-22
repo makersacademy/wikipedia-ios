@@ -6,6 +6,8 @@ class PageIssuesTableViewController: UITableViewController {
     fileprivate var theme = Theme.standard
     
     @objc var issues = [String]()
+    @objc var multipleIssuesMessageArray = [String.SubSequence]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,7 +16,8 @@ class PageIssuesTableViewController: UITableViewController {
         
         self.tableView.estimatedRowHeight = 90.0
         self.tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+        self.tableView.separatorColor = UIColor.red
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: PageIssuesTableViewController.defaultViewCellReuseIdentifier)
 
@@ -30,18 +33,28 @@ class PageIssuesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let multipleIssuesMessage = String(multipleIssuesMessageArray[0])
         let cell = tableView.dequeueReusableCell(withIdentifier: PageIssuesTableViewController.defaultViewCellReuseIdentifier, for: indexPath)
 
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         
-        cell.textLabel?.text = issues[indexPath.row]
+        let multiIssues =  indexPath.row == 0 && issues.count != 1
+        
+        switch multiIssues {
+        case true:
+            cell.textLabel?.text = multipleIssuesMessage
+        case false:
+            cell.textLabel?.text = issues[indexPath.row]
+            cell.imageView?.image = UIImage(named:"description-info")
+        }
         
         cell.isUserInteractionEnabled = false
         cell.backgroundColor = self.theme.colors.paperBackground
         cell.selectedBackgroundView = UIView()
         cell.selectedBackgroundView?.backgroundColor = self.theme.colors.midBackground
         cell.textLabel?.textColor = self.theme.colors.primaryText
+       
         
         return cell
     }
@@ -51,7 +64,7 @@ class PageIssuesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issues.count
+    return issues.count
     }
 
 }

@@ -56,8 +56,14 @@ extension ArticleViewController {
             return
         }
         let issues = payload.compactMap { ($0["html"] as? String)?.removingHTML }
+        print("-------------------------------------------------")
+        print(issues)
+        let splitSeperator = Character("\n")
+        let multipleIssuesMessage = issues[0].split(separator: splitSeperator)
+        print (multipleIssuesMessage[0])
         let issuesVC = PageIssuesTableViewController(style: .grouped)
         issuesVC.issues = issues
+        issuesVC.multipleIssuesMessageArray = multipleIssuesMessage
         presentEmbedded(issuesVC, style: .sheet)
     }
 }
