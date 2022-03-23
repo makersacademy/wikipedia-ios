@@ -56,13 +56,14 @@ extension ArticleViewController {
             return
         }
         let issues = payload.compactMap { ($0["html"] as? String)?.removingHTML }
+        let splitSeperator = Character("\n")
+        let multipleIssuesMessageArray = issues[0].split(separator: splitSeperator)
         let issuesVC = PageIssuesTableViewController(style: .grouped)
         issuesVC.issues = issues
+        issuesVC.multipleIssuesMessageArray = multipleIssuesMessageArray
         presentEmbedded(issuesVC, style: .sheet)
     }
 }
-
-
 
 extension ArticleViewController: WMFLanguagesViewControllerDelegate {
     func languagesController(_ controller: WMFLanguagesViewController, didSelectLanguage language: MWKLanguageLink) {
