@@ -8,53 +8,38 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
     public var shouldRestoreScrollPosition = false
     
     var startingTheme = "black"
-        // get the current date and time
-        let currentDateTime = Date()
+    let currentDateTime = Date()
+    let userCalendar = Calendar.current
 
-        // get the user's calendar
-        let userCalendar = Calendar.current
-
-        // choose which date and time components are needed
-        let requestedComponents: Set<Calendar.Component> = [
-            .year,
-            .month,
-            .day,
-            .hour,
-            .minute,
-            .second
-        ]
+    let requestedComponents: Set<Calendar.Component> = [
+        .year,
+        .month,
+        .day,
+        .hour,
+        .minute,
+        .second
+    ]
     
     @objc public weak var notificationsCenterPresentationDelegate: NotificationsCenterPresentationDelegate?
     @objc public weak var settingsPresentationDelegate: SettingsPresentationDelegate?
 
     // MARK - UIViewController
     
-    // in ExploreViewController, and called from viewDidLoad()
     func setAutomaticTheme() {
-           // To discover:
-            // How to get current time?
-            // How to check if time is within a certain period? - Google
-                // Consider building an 'extension' - is there already one for Date in this repo?
-                // Extension file naming practices, ThingYou'reExtending+extension Date+extension
-            // Switch: to set the correct string value for the theme
-            
-            // ToDo: Have something else that determines the theme value so it's not hardcoded
+          
         let dateToSetTheme = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
-
         if let hour = dateToSetTheme.hour {
-
             if (hour >= 6 && hour < 17) {
                 startingTheme = "sepia"
-            }
-            else {
+            } else {
                 startingTheme = "dark"
             }
-        }else {
+        } else {
             return
         }
-            let userInfo: [String: Any] = [ReadingThemesControlsViewController.WMFUserDidSelectThemeNotificationThemeNameKey: startingTheme]
+        let userInfo: [String: Any] = [ReadingThemesControlsViewController.WMFUserDidSelectThemeNotificationThemeNameKey: startingTheme]
 
-            NotificationCenter.default.post(name: Notification.Name(ReadingThemesControlsViewController.WMFUserDidSelectThemeNotification), object: nil, userInfo: userInfo)
+        NotificationCenter.default.post(name: Notification.Name(ReadingThemesControlsViewController.WMFUserDidSelectThemeNotification), object: nil, userInfo: userInfo)
      }
     
     override func viewDidLoad() {
@@ -70,7 +55,6 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
 
         updateNotificationsCenterButton()
         updateSettingsButton()
-        
         setAutomaticTheme()
 
         isRefreshControlEnabled = true

@@ -17,7 +17,7 @@ class PageIssuesTableViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 90.0
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
-        self.tableView.separatorColor = UIColor.red
+        self.tableView.separatorColor = UIColor.blue70
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: PageIssuesTableViewController.defaultViewCellReuseIdentifier)
 
@@ -54,7 +54,6 @@ class PageIssuesTableViewController: UITableViewController {
         cell.selectedBackgroundView = UIView()
         cell.selectedBackgroundView?.backgroundColor = self.theme.colors.midBackground
         cell.textLabel?.textColor = self.theme.colors.primaryText
-       
         
         return cell
     }
@@ -64,7 +63,7 @@ class PageIssuesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return issues.count
+        return issues.count
     }
 
 }
