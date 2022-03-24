@@ -272,7 +272,6 @@ class SavedArticlesCollectionViewCell: ArticleCollectionViewCell {
             dateFormatter.dateFormat = savedDate.dateFormatWithSuffix()
             titleHTML = article.displayTitleHTML
             descriptionLabel.text = "Saved " + dateFormatter.string(from: savedDate)
-            print (article.savedDate!.dateFormatWithSuffix())
         } else {
             return
         }
