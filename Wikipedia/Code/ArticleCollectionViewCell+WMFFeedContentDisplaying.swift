@@ -52,10 +52,10 @@ public extension ArticleCollectionViewCell {
         case .pageWithLocationPlaceholder:
             fallthrough
         case .pageWithLocation:
+            imageViewDimension = 196
             isImageViewHidden = false
-            descriptionLabel.text = article.capitalizedWikidataDescriptionOrSnippet
+            descriptionLabel.text = article.displayTitleHTMLString
             extractLabel?.text = nil
-            break
         case .compactList, .relatedPages:
             configureForCompactList(at: index)
             if displayType == .relatedPages, let cell = self as? ArticleRightAlignedImageCollectionViewCell {

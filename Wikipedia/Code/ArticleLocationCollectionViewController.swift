@@ -153,7 +153,7 @@ extension ArticleLocationCollectionViewController {
         cell.articleLocation = article.location
         cell.update(userLocation: userLocation, heading: userHeading)
         
-        cell.configure(article: article, displayType: .pageWithLocation, index: indexPath.row, theme: theme, layoutOnly: layoutOnly)
+        cell.configure(article: article, displayType: .pageWithPreview, index: indexPath.row, theme: theme, layoutOnly: layoutOnly)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
