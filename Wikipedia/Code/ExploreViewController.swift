@@ -6,11 +6,41 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
 
     public var presentedContentGroupKey: String?
     public var shouldRestoreScrollPosition = false
+    
+    var startingTheme = "black"
+    let currentDateTime = Date()
+    let userCalendar = Calendar.current
 
+    let requestedComponents: Set<Calendar.Component> = [
+        .year,
+        .month,
+        .day,
+        .hour,
+        .minute,
+        .second
+    ]
+    
     @objc public weak var notificationsCenterPresentationDelegate: NotificationsCenterPresentationDelegate?
     @objc public weak var settingsPresentationDelegate: SettingsPresentationDelegate?
 
     // MARK - UIViewController
+    
+    func setAutomaticTheme() {
+          
+        let dateToSetTheme = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
+        if let hour = dateToSetTheme.hour {
+            if (hour >= 6 && hour < 17) {
+                startingTheme = "sepia"
+            } else {
+                startingTheme = "dark"
+            }
+        } else {
+            return
+        }
+        let userInfo: [String: Any] = [ReadingThemesControlsViewController.WMFUserDidSelectThemeNotificationThemeNameKey: startingTheme]
+
+        NotificationCenter.default.post(name: Notification.Name(ReadingThemesControlsViewController.WMFUserDidSelectThemeNotification), object: nil, userInfo: userInfo)
+     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +55,7 @@ class ExploreViewController: ColumnarCollectionViewController, ExploreCardViewCo
 
         updateNotificationsCenterButton()
         updateSettingsButton()
+        setAutomaticTheme()
 
         isRefreshControlEnabled = true
         collectionView.refreshControl?.layer.zPosition = 0

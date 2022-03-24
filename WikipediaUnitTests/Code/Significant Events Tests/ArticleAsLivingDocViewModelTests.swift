@@ -86,7 +86,7 @@ class ArticleAsLivingDocViewModelTests: XCTestCase {
                     XCTAssertEqual(viewModel.nextRvStartId, 979853162)
                     XCTAssertEqual(viewModel.sha, "ddb855b98e213935bfa5b23fb37e2d7034fe63eec9673f1fd66f43512c2c92a7")
 
-                    let fourthSection = viewModel.sections[4]
+                    let fourthSection = viewModel.sections[3]
                     let firstEvent = fourthSection.typedEvents[0]
 
                     switch firstEvent {
